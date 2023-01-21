@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YHH4nQOlYQKqFnG8Z71+e85MZneCLcMsI37qcLLs5yfraKCL8h+dN0Ztnw16ytjpkXpp+3GiZt1PtLSO0vVTLQ==",
+  "dgSpecHash": "ChE/VhViErSZIOy+ii0ouPiicr28Cr/Xe3c+ClVc+VI9p+06dPa2fV/+I1xRuAPgG0Bc/dcn8VnYN7dmWXnokA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Sora\\source\\repos\\RedLineLibrary\\RedLineTesteUnitaire\\RedLineTesteUnitaire.csproj",
+  "projectFilePath": "D:\\log\\RedLine\\RedLineLibrary\\RedLineTesteUnitaire\\RedLineTesteUnitaire.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Sora\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\Sora\\.nuget\\packages\\microsoft.codecoverage\\17.1.0\\microsoft.codecoverage.17.1.0.nupkg.sha512",

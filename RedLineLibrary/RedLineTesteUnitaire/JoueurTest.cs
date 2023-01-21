@@ -1,7 +1,7 @@
 namespace RedLineTesteUnitaire
 {
     [TestClass]
-    public class UnitTest1
+    public class JoueurTest
     {
         [TestMethod]
         public void TestMethod1()
