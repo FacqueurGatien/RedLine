@@ -1,0 +1,12 @@
+D:\log\RedLine\RedLineLibrary\RedLineLibrary\bin\Debug\net6.0\RedLineLibrary.deps.json
+D:\log\RedLine\RedLineLibrary\RedLineLibrary\bin\Debug\net6.0\RedLineLibrary.dll
+D:\log\RedLine\RedLineLibrary\RedLineLibrary\bin\Debug\net6.0\RedLineLibrary.pdb
+D:\log\RedLine\RedLineLibrary\RedLineLibrary\obj\Debug\net6.0\RedLineLibrary.csproj.AssemblyReference.cache
+D:\log\RedLine\RedLineLibrary\RedLineLibrary\obj\Debug\net6.0\RedLineLibrary.GeneratedMSBuildEditorConfig.editorconfig
+D:\log\RedLine\RedLineLibrary\RedLineLibrary\obj\Debug\net6.0\RedLineLibrary.AssemblyInfoInputs.cache
+D:\log\RedLine\RedLineLibrary\RedLineLibrary\obj\Debug\net6.0\RedLineLibrary.AssemblyInfo.cs
+D:\log\RedLine\RedLineLibrary\RedLineLibrary\obj\Debug\net6.0\RedLineLibrary.csproj.CoreCompileInputs.cache
+D:\log\RedLine\RedLineLibrary\RedLineLibrary\obj\Debug\net6.0\RedLineLibrary.dll
+D:\log\RedLine\RedLineLibrary\RedLineLibrary\obj\Debug\net6.0\refint\RedLineLibrary.dll
+D:\log\RedLine\RedLineLibrary\RedLineLibrary\obj\Debug\net6.0\RedLineLibrary.pdb
+D:\log\RedLine\RedLineLibrary\RedLineLibrary\obj\Debug\net6.0\ref\RedLineLibrary.dll

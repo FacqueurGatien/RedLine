@@ -1,11 +1,37 @@
 namespace RedLineTesteUnitaire
 {
-    [TestClass]
-    public class JoueurTest
+    public abstract class  Carte
     {
-        [TestMethod]
-        public void TestMethod1()
-        {
-        }
+
     }
+    public class CarteReponse : Carte
+    {
+
+    }
+    public class CarteQuestion : Carte
+    {
+
+    }
+
+    public class Paquet<T> where T : Carte
+    {
+        public Paquet() { }
+    }
+    public enum Test
+    {
+        Defausse,
+        CarteReponse,
+        CarteQuestion
+    }
+    public class test
+    {
+        Dictionary<Test, Paquet<Carte>> testdico;
+        public test() { 
+            testdico = new Dictionary<Test, Paquet<Carte>>();
+            testdico.Add(Test.CarteQuestion,new Paquet<Carte>());
+            testdico.Add(Test.CarteReponse, new Paquet<Carte>());
+            testdico.Add(Test.Defausse, new Paquet<Carte>());
+
+        }
+     }
 }
