@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace RedLineLibrary
 {
-    public abstract class Carte
+    public class CarteReponse : Carte
     {
-        protected string texte;
-        private Paquet<Carte> cartes;
-        public abstract string ToString();
+        public override string ToString()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

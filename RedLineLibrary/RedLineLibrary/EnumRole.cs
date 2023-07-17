@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace RedLineLibrary
 {
-    public abstract class Carte
+    public enum EnumRole
     {
-        protected string texte;
-        private Paquet<Carte> cartes;
-        public abstract string ToString();
+        Participant,
+        Juge
     }
 }
