@@ -8,23 +8,23 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Sora\\.nuget\\packages\\": {},
+    "C:\\Users\\izaya\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\log\\RedLine\\RedLineLibrary\\RedLineLibrary\\RedLineLibrary.csproj",
+      "projectUniqueName": "D:\\SoraDev\\RedLine\\RedLineLibrary\\RedLineLibrary\\RedLineLibrary.csproj",
       "projectName": "RedLineLibrary",
-      "projectPath": "D:\\log\\RedLine\\RedLineLibrary\\RedLineLibrary\\RedLineLibrary.csproj",
-      "packagesPath": "C:\\Users\\Sora\\.nuget\\packages\\",
-      "outputPath": "D:\\log\\RedLine\\RedLineLibrary\\RedLineLibrary\\obj\\",
+      "projectPath": "D:\\SoraDev\\RedLine\\RedLineLibrary\\RedLineLibrary\\RedLineLibrary.csproj",
+      "packagesPath": "C:\\Users\\izaya\\.nuget\\packages\\",
+      "outputPath": "D:\\SoraDev\\RedLine\\RedLineLibrary\\RedLineLibrary\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Sora\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\izaya\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -66,7 +66,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   }
