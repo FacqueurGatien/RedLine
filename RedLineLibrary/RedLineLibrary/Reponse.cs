@@ -10,9 +10,19 @@ namespace RedLineLibrary
     {
         private Joueur joueur;
         private Paquet<CarteReponse> paquetReponse;
-        public Paquet<CarteReponse> ObtenirReponse()
+        public Reponse(Joueur _joueur, Paquet<CarteReponse> _paquetReponse)
         {
-            throw new NotImplementedException();
+            joueur = _joueur;
+            paquetReponse = _paquetReponse;
+        }
+
+        public Joueur Joueur { get => joueur;}
+
+        public Paquet<CarteReponse>? ObtenirReponse(Joueur j)
+        {
+            if (j.Role == EnumRole.Participant && !paquetReponse.EstVisible)
+                return null;
+            return paquetReponse;
         }
     }
 }

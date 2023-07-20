@@ -6,9 +6,19 @@ using System.Threading.Tasks;
 
 namespace RedLineLibrary
 {
-    public class Paquet<T>
+    public class Paquet<T> where T : Carte
     {
         private bool estVisible;
+        private Stack<T> cartes;
+
+        public Paquet(Stack<T> _cartes)
+        {
+            cartes = _cartes;
+           
+        }
+
+        public bool EstVisible { get => estVisible; private set => estVisible = value; }
+
         public bool AjouterCarte(T _carte)
         {
             throw new NotImplementedException();

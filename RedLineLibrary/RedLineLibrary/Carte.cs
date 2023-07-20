@@ -9,7 +9,10 @@ namespace RedLineLibrary
     public abstract class Carte
     {
         protected string texte;
-        private Paquet<Carte> cartes;
+        public Carte(string _texte)
+        {
+            texte = _texte;
+        }
         public abstract string ToString();
     }
 }

@@ -10,6 +10,18 @@ namespace RedLineLibrary
     {
         private Manager manager;
         private EnumRole role;
+        private string pseudo;
+        private int score;
+        public string Pseudo { get => pseudo; private set => pseudo = value; }
+        public EnumRole Role { get => role; }
+
+        public Joueur(Manager _manager, EnumRole _role, string _pseudo)
+        {
+            manager = _manager;
+            role = _role;
+            pseudo = _pseudo;
+            score = 0;
+        }
         public Reponse ComposerReponse(int[] _cartesId)
         {
             throw new NotImplementedException();
@@ -29,6 +41,16 @@ namespace RedLineLibrary
         public void VoterReponse(int _idReponse)
         {
             throw new NotImplementedException();
+        }
+        public void ChangerRole()
+        {
+            role = (role == EnumRole.Juge ? EnumRole.Participant : EnumRole.Juge);
+        }
+
+        public void AugmenterScore()
+        {
+            if (this.Role == EnumRole.Participant)
+                score++;
         }
     }
 }

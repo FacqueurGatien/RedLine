@@ -9,8 +9,17 @@ namespace RedLineLibrary
     public class Manager
     {
         private Plateau plateau;
-        private Joueur[] joueurs;
+        private List<Joueur> joueurs;
         private Partie partie;
+        private Joueur juge; 
+
+        public Manager(Plateau _plateau, List<Joueur> _joueur,Partie _partie)
+        {
+            plateau = _plateau;
+            joueurs = _joueur;
+            partie = _partie;
+            juge = joueurs[new Random().Next(0, joueurs.Count)];
+        }
 
         public bool DemandeCarteReponseAuPlateauPourLeJoueur(string _pseudo, int _qteCarte)
         {
@@ -24,9 +33,19 @@ namespace RedLineLibrary
         {
             throw new NotImplementedException();
         }
-        public bool VoterReponse()
+        public bool VoterReponse(Joueur juge,int n)
         {
-            throw new NotImplementedException();
+            if (juge.Role != EnumRole.Juge)
+                return false;
+            Manche manche = partie.RecupererManche();
+            Joueur participant = manche.RetournerJoueurReponse(juge, n);
+            if (participant == null)
+                return false;
+            participant.AugmenterScore();
+            participant.ChangerRole();
+            juge.ChangerRole();
+            juge = participant;
+            return true;
         }
     }
 }

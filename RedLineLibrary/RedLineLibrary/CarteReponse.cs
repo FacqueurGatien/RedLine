@@ -8,9 +8,13 @@ namespace RedLineLibrary
 {
     public class CarteReponse : Carte
     {
+        public CarteReponse(string _text)
+            :base(_text) 
+        {
+        }
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return texte;
         }
     }
 }
