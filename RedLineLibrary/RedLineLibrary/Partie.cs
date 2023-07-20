@@ -16,7 +16,7 @@ namespace RedLineLibrary
         }
         public void GenererManche()
         {
-            throw new NotImplementedException();
+            mancheActuelle = new Manche(manager.DemanderCarteQuestionAuPlateau());
         }
         public Manche RecupererManche() => mancheActuelle;
     }

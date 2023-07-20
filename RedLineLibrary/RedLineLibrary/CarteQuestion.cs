@@ -24,5 +24,7 @@ namespace RedLineLibrary
             }
             return String.Format(texte, l.ToArray());
         }
+
+        public int NombreDeTrous() => texte.Count(d => d == '{');
     }
 }

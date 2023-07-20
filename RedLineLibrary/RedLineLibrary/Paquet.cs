@@ -11,29 +11,56 @@ namespace RedLineLibrary
         private bool estVisible;
         private Stack<T> cartes;
 
-        public Paquet(Stack<T> _cartes)
+        public Paquet(Stack<T> _cartes, bool _visible = false)
         {
             cartes = _cartes;
-           
+            estVisible = _visible;
         }
-
         public bool EstVisible { get => estVisible; private set => estVisible = value; }
 
-        public bool AjouterCarte(T _carte)
+        public void AjouterCarte(T _carte)
         {
-            throw new NotImplementedException();
+            cartes.Push(_carte);
         }
-        public bool AjouterCarte(T[] _cartes)
+        public void AjouterCarte(T[] _cartes)
         {
-            throw new NotImplementedException();
+            foreach (T carte in _cartes)
+            {
+                AjouterCarte(carte);
+            }
         }
-        public T[] RecupererUnNombreDeCartes(int _qteCartes)
+        public T[]? RecupererUnNombreDeCartes(int _qteCartes)
         {
-            throw new NotImplementedException();
+            Paquet<T>? paquet = RecupererUnPaquetdeCarte(_qteCartes);
+            return (paquet != null ? paquet.cartes.ToArray() : null);
+        }
+        public Paquet<T>? RecupererUnPaquetdeCarte(int _qteCartes)
+        {
+            Stack<T>? rt = RecuperStackDeCartes(_qteCartes);
+            return new Paquet<T>(rt??new Stack<T>());
+        }
+
+        public Stack<T>? RecuperStackDeCartes(int _qteCartes)
+        {
+            if (cartes.Count() < _qteCartes)
+            {
+                return null;
+            }
+            Stack<T> rt = new Stack<T>();
+            for (int i = 0; i > _qteCartes; i++)
+            {
+                rt.Push(cartes.Pop());
+            }
+            rt.Reverse();
+            return rt;
         }
         public T[] Regarder()
         {
-            throw new NotImplementedException();
+            if (!estVisible)
+            {
+                return null;
+            }
+            return cartes.ToArray();
         }
     }
 }

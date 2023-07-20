@@ -17,13 +17,14 @@ namespace RedLineLibrary
             paquetCarteQuestion = _paquetCarteQuestion;
             paquetCarteReponse = _paquetCarteReponse;
         }
-        public CarteQuestion DonnerCarteQuestionAuMediateur()
+        public CarteQuestion? DonnerCarteQuestionAuMediateur()
         {
-            throw new NotImplementedException();
+            CarteQuestion[]? retour = paquetCarteQuestion.RecupererUnNombreDeCartes(1);
+            return retour == null ? null : retour[0];
         }
-        public CarteReponse[] DonnerReponseAuMediateur(int qteCarte)
+        public CarteReponse[]? DonnerReponseAuMediateur(int _qteCarte)
         {
-            throw new NotImplementedException();
+            return paquetCarteReponse.RecupererUnNombreDeCartes(_qteCarte);
         }
     }
 }

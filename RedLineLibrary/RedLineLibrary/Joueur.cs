@@ -34,6 +34,11 @@ namespace RedLineLibrary
         {
             throw new NotImplementedException();
         }
+
+        public bool RecevoirCarteReponse(CarteReponse _carte)
+        {
+            return RecevoirCartesReponse(new CarteReponse[]{ _carte});
+        }
         public Paquet<CarteReponse> RegarderReponse(int _idReponse)
         {
             throw new NotImplementedException();

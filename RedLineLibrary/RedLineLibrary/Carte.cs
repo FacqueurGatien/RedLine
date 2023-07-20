@@ -13,6 +13,6 @@ namespace RedLineLibrary
         {
             texte = _texte;
         }
-        public abstract string ToString();
+        public override abstract string ToString();
     }
 }

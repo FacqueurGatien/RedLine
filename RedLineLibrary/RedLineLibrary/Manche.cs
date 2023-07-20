@@ -41,9 +41,6 @@ namespace RedLineLibrary
         }
 
         public bool SoumettreReponse(Joueur j, Paquet<CarteReponse> cartes) => SoumettreReponse(new Reponse(j, cartes));
-        public CarteQuestion VoirQuestion()
-        {
-            throw new NotImplementedException();
-        }
+        public CarteQuestion VoirQuestion() => question;
     }
 }

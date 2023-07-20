@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,18 +21,32 @@ namespace RedLineLibrary
             partie = _partie;
             juge = joueurs[new Random().Next(0, joueurs.Count)];
         }
-
-        public bool DemandeCarteReponseAuPlateauPourLeJoueur(string _pseudo, int _qteCarte)
+        public bool RedistribuerCarteReponseAuJoueursNonJuge()
         {
-            throw new NotImplementedException();
+            int nbCartesADistribuer = partie.RecupererManche().VoirQuestion().NombreDeTrous();
+
+            CarteReponse[]? cartes = plateau.DonnerReponseAuMediateur((joueurs.Count() - 1) * nbCartesADistribuer);
+            if (cartes == null)
+                return false;
+            Stack<CarteReponse> cartesToStack = new Stack<CarteReponse>(cartes);
+                for (int i = 0; i < nbCartesADistribuer; i++)
+                {
+                    foreach (Joueur j in joueurs.FindAll(d => d.Role == EnumRole.Participant).ToArray())
+                    {
+                        j.RecevoirCarteReponse(cartes[i]);
+                    }
+                }
+            return true;
         }
         public CarteQuestion DemanderCarteQuestionAuPlateau()
         {
-            throw new NotImplementedException();
+            return plateau.DonnerCarteQuestionAuMediateur();
         }
-        public Paquet<CarteReponse> DemanderVoirReponse(int _idReponse,string _pseudoJoueur)
+        public Paquet<CarteReponse>? DemanderVoirReponse(int _idReponse,Joueur _juge)
         {
-            throw new NotImplementedException();
+            if (_juge.Role != EnumRole.Juge)
+                return null;
+            return partie.RecupererManche().RetournerReponse(_juge, _idReponse);
         }
         public bool VoterReponse(Joueur juge,int n)
         {
@@ -41,6 +56,7 @@ namespace RedLineLibrary
             Joueur participant = manche.RetournerJoueurReponse(juge, n);
             if (participant == null)
                 return false;
+            RedistribuerCarteReponseAuJoueursNonJuge();
             participant.AugmenterScore();
             participant.ChangerRole();
             juge.ChangerRole();
