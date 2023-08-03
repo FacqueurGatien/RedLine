@@ -47,7 +47,7 @@ namespace RedLineLibrary
                 return null;
             }
             Stack<T> rt = new Stack<T>();
-            for (int i = 0; i > _qteCartes; i++)
+            for (int i = 0; i < _qteCartes; i++)
             {
                 rt.Push(cartes.Pop());
             }

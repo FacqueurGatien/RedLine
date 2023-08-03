@@ -16,6 +16,7 @@ namespace RedLineLibrary
             manager = _manager;
             paquetCarteQuestion = _paquetCarteQuestion;
             paquetCarteReponse = _paquetCarteReponse;
+            manager.Initialize(this);
         }
         public CarteQuestion? DonnerCarteQuestionAuMediateur()
         {

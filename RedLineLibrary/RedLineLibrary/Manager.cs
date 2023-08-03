@@ -14,12 +14,25 @@ namespace RedLineLibrary
         private Partie partie;
         private Joueur juge; 
 
-        public Manager(Plateau _plateau, List<Joueur> _joueur,Partie _partie)
+
+        public Manager()
         {
-            plateau = _plateau;
-            joueurs = _joueur;
-            partie = _partie;
-            juge = joueurs[new Random().Next(0, joueurs.Count)];
+            plateau = default;
+            joueurs = new List<Joueur>();
+            partie = default;
+            juge = default;
+        }
+        public void Initialize(Plateau _plateau)
+        {
+            plateau= _plateau;
+        }
+        public void Initialize(Partie _partie)
+        {
+            _partie = _partie;
+        }
+        public void Initialize(Joueur _joueurs)
+        {
+            joueurs.Add(_joueurs);
         }
         public bool RedistribuerCarteReponseAuJoueursNonJuge()
         {
@@ -42,7 +55,7 @@ namespace RedLineLibrary
         {
             return plateau.DonnerCarteQuestionAuMediateur();
         }
-        public Paquet<CarteReponse>? DemanderVoirReponse(int _idReponse,Joueur _juge)
+        public Paquet<CarteReponse>? DemanderVoirReponse(Joueur _juge,int _idReponse)
         {
             if (_juge.Role != EnumRole.Juge)
                 return null;

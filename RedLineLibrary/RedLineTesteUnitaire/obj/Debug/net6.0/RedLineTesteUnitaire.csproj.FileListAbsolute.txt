@@ -194,3 +194,6 @@ D:\SoraDev\RedLine\RedLineLibrary\RedLineTesteUnitaire\obj\Debug\net6.0\refint\R
 D:\SoraDev\RedLine\RedLineLibrary\RedLineTesteUnitaire\obj\Debug\net6.0\RedLineTesteUnitaire.pdb
 D:\SoraDev\RedLine\RedLineLibrary\RedLineTesteUnitaire\obj\Debug\net6.0\RedLineTesteUnitaire.genruntimeconfig.cache
 D:\SoraDev\RedLine\RedLineLibrary\RedLineTesteUnitaire\obj\Debug\net6.0\ref\RedLineTesteUnitaire.dll
+D:\SoraDev\RedLine\RedLineLibrary\RedLineTesteUnitaire\bin\Debug\net6.0\CoverletSourceRootsMapping
+D:\SoraDev\RedLine\RedLineLibrary\RedLineTesteUnitaire\bin\Debug\net6.0\RedLineLibrary.dll
+D:\SoraDev\RedLine\RedLineLibrary\RedLineTesteUnitaire\bin\Debug\net6.0\RedLineLibrary.pdb

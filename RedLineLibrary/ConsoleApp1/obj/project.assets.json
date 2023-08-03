@@ -1804,6 +1804,7 @@
           "MSTest.TestAdapter": "2.2.8",
           "MSTest.TestFramework": "2.2.8",
           "Microsoft.NET.Test.Sdk": "17.1.0",
+          "RedLineLibrary": "1.0.0",
           "coverlet.collector": "3.1.2"
         },
         "compile": {

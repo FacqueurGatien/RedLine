@@ -13,6 +13,7 @@ namespace RedLineLibrary
         public Partie(Manager _manager)
         {
             manager = _manager;
+            manager.Initialize(this);
         }
         public void GenererManche()
         {

@@ -8,44 +8,85 @@ namespace RedLineLibrary
 {
     public class Joueur
     {
+        private static int MAX_CARDS = 5; 
         private Manager manager;
         private EnumRole role;
         private string pseudo;
+        List<CarteReponse> saMain = new List<CarteReponse>();
         private int score;
         public string Pseudo { get => pseudo; private set => pseudo = value; }
         public EnumRole Role { get => role; }
 
         public Joueur(Manager _manager, EnumRole _role, string _pseudo)
         {
+            saMain = new List<CarteReponse>();
             manager = _manager;
             role = _role;
             pseudo = _pseudo;
             score = 0;
+            manager.Initialize(this);
         }
+
+        // Id des cartes en ordre LIFO
         public Reponse ComposerReponse(int[] _cartesId)
         {
-            throw new NotImplementedException();
+            // TRI CROISSANT
+            List<int> cartesId = new List<int>(_cartesId);
+            cartesId.Sort((a, b) => a - b);
+            // VERIFICATION AUCUN DOUBLON
+            bool doublon = false;
+            int i = 1;
+            while (i < cartesId.Count && !doublon)
+            {
+                doublon = cartesId[i] == cartesId[i - 1];
+            }
+            // EXCEPTIONS DOUBLONS ET INTERVALLE DES IDS
+            if (doublon)
+                throw new Exception("Erreur doublon");
+            if (cartesId[cartesId.Count - 1] >= saMain.Count)
+                throw new Exception("id trop grand");
+            if (cartesId[0] < 0)
+                throw new Exception("id trop petit");
+            // GENERATION DU PAQUET ET RETRAIT DES CARTES DE LA MAIN
+            Paquet<CarteReponse> paquet = new Paquet<CarteReponse>(new());
+            foreach (int id in _cartesId)
+            {
+                paquet.AjouterCarte(saMain[i]);
+                saMain.RemoveAt(i);
+            }
+            Reponse reponse = new Reponse(this, paquet);
+            return reponse;
         }
-        public bool DemanderCartesReponse(int _qteCarte)
+        /*public bool DemanderCartesReponse(int _qteCarte)
         {
-            throw new NotImplementedException();
-        }
+            manager.RedistribuerCarteReponseAuJoueursNonJuge
+        }*/
         public bool RecevoirCartesReponse(CarteReponse[] _cartes)
         {
-            throw new NotImplementedException();
+            if (saMain.Count+_cartes.Length>MAX_CARDS)
+            {
+                return false;
+            }
+            saMain.AddRange(_cartes);
+            return true;
         }
 
         public bool RecevoirCarteReponse(CarteReponse _carte)
         {
-            return RecevoirCartesReponse(new CarteReponse[]{ _carte});
+            if (saMain.Count >= MAX_CARDS)
+            {
+                return false;
+            }
+            saMain.Add(_carte);
+            return true;
         }
-        public Paquet<CarteReponse> RegarderReponse(int _idReponse)
+        public void RegarderReponse(int _idReponse)
         {
-            throw new NotImplementedException();
+            manager.DemanderVoirReponse(this,_idReponse);
         }
         public void VoterReponse(int _idReponse)
         {
-            throw new NotImplementedException();
+            manager.VoterReponse(this,_idReponse);
         }
         public void ChangerRole()
         {
