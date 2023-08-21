@@ -37,7 +37,7 @@ namespace RedLineLibrary
         public Paquet<T>? RecupererUnPaquetdeCarte(int _qteCartes)
         {
             Stack<T>? rt = RecuperStackDeCartes(_qteCartes);
-            return new Paquet<T>(rt??new Stack<T>());
+            return rt == null ? null : new Paquet<T>(rt);
         }
 
         public Stack<T>? RecuperStackDeCartes(int _qteCartes)
