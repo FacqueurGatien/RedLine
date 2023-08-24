@@ -1,0 +1,14 @@
+D:\git\RedLine\RedLineLibrary\TestPartialClass\bin\Debug\net6.0\TestPartialClass.exe
+D:\git\RedLine\RedLineLibrary\TestPartialClass\bin\Debug\net6.0\TestPartialClass.deps.json
+D:\git\RedLine\RedLineLibrary\TestPartialClass\bin\Debug\net6.0\TestPartialClass.runtimeconfig.json
+D:\git\RedLine\RedLineLibrary\TestPartialClass\bin\Debug\net6.0\TestPartialClass.dll
+D:\git\RedLine\RedLineLibrary\TestPartialClass\bin\Debug\net6.0\TestPartialClass.pdb
+D:\git\RedLine\RedLineLibrary\TestPartialClass\obj\Debug\net6.0\TestPartialClass.GeneratedMSBuildEditorConfig.editorconfig
+D:\git\RedLine\RedLineLibrary\TestPartialClass\obj\Debug\net6.0\TestPartialClass.AssemblyInfoInputs.cache
+D:\git\RedLine\RedLineLibrary\TestPartialClass\obj\Debug\net6.0\TestPartialClass.AssemblyInfo.cs
+D:\git\RedLine\RedLineLibrary\TestPartialClass\obj\Debug\net6.0\TestPartialClass.csproj.CoreCompileInputs.cache
+D:\git\RedLine\RedLineLibrary\TestPartialClass\obj\Debug\net6.0\TestPartialClass.dll
+D:\git\RedLine\RedLineLibrary\TestPartialClass\obj\Debug\net6.0\refint\TestPartialClass.dll
+D:\git\RedLine\RedLineLibrary\TestPartialClass\obj\Debug\net6.0\TestPartialClass.pdb
+D:\git\RedLine\RedLineLibrary\TestPartialClass\obj\Debug\net6.0\TestPartialClass.genruntimeconfig.cache
+D:\git\RedLine\RedLineLibrary\TestPartialClass\obj\Debug\net6.0\ref\TestPartialClass.dll

@@ -11,9 +11,11 @@ namespace RedLineLibrary
         private bool estVisible;
         private Stack<T> cartes;
 
+        public int Count => cartes.Count();
+
         public Paquet(Stack<T> _cartes, bool _visible = false)
         {
-            cartes = _cartes;
+            cartes = _cartes??new Stack<T>();
             estVisible = _visible;
         }
         public bool EstVisible { get => estVisible; private set => estVisible = value; }
@@ -61,6 +63,19 @@ namespace RedLineLibrary
                 return null;
             }
             return cartes.ToArray();
+        }
+
+        public void Melanger()
+        {
+            List<T> reponses = cartes.ToList();
+            Stack<T> resultat = new();
+            while (reponses.Count > 0)
+            {
+                int idAAjoute = Alea.GetInstance().Next(0, reponses.Count());
+                resultat.Push(reponses[idAAjoute]);
+                reponses.RemoveAt(idAAjoute);
+            }
+            cartes = resultat;
         }
     }
 }

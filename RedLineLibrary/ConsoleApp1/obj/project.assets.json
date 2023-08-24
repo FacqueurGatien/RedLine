@@ -6369,23 +6369,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\izaya\\.nuget\\packages\\": {},
+    "C:\\Users\\rodol\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\SoraDev\\RedLine\\RedLineLibrary\\ConsoleApp1\\ConsoleApp1.csproj",
+      "projectUniqueName": "D:\\git\\RedLine\\RedLineLibrary\\ConsoleApp1\\ConsoleApp1.csproj",
       "projectName": "ConsoleApp1",
-      "projectPath": "D:\\SoraDev\\RedLine\\RedLineLibrary\\ConsoleApp1\\ConsoleApp1.csproj",
-      "packagesPath": "C:\\Users\\izaya\\.nuget\\packages\\",
-      "outputPath": "D:\\SoraDev\\RedLine\\RedLineLibrary\\ConsoleApp1\\obj\\",
+      "projectPath": "D:\\git\\RedLine\\RedLineLibrary\\ConsoleApp1\\ConsoleApp1.csproj",
+      "packagesPath": "C:\\Users\\rodol\\.nuget\\packages\\",
+      "outputPath": "D:\\git\\RedLine\\RedLineLibrary\\ConsoleApp1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\izaya\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\rodol\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -6394,17 +6394,18 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\SoraDev\\RedLine\\RedLineLibrary\\RedLineLibrary\\RedLineLibrary.csproj": {
-              "projectPath": "D:\\SoraDev\\RedLine\\RedLineLibrary\\RedLineLibrary\\RedLineLibrary.csproj"
+            "D:\\git\\RedLine\\RedLineLibrary\\RedLineLibrary\\RedLineLibrary.csproj": {
+              "projectPath": "D:\\git\\RedLine\\RedLineLibrary\\RedLineLibrary\\RedLineLibrary.csproj"
             },
-            "D:\\SoraDev\\RedLine\\RedLineLibrary\\RedLineTesteUnitaire\\RedLineTesteUnitaire.csproj": {
-              "projectPath": "D:\\SoraDev\\RedLine\\RedLineLibrary\\RedLineTesteUnitaire\\RedLineTesteUnitaire.csproj"
+            "D:\\git\\RedLine\\RedLineLibrary\\RedLineTesteUnitaire\\RedLineTesteUnitaire.csproj": {
+              "projectPath": "D:\\git\\RedLine\\RedLineLibrary\\RedLineTesteUnitaire\\RedLineTesteUnitaire.csproj"
             }
           }
         }
@@ -6434,7 +6435,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

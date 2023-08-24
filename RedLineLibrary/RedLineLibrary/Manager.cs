@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace RedLineLibrary
 {
-    public class Manager
+    public partial class Manager
     {
         private Plateau plateau;
         private List<Joueur> joueurs;
         private Partie partie;
-        private Joueur juge; 
-
+        private Joueur juge;
 
         public Manager()
         {
@@ -21,10 +20,13 @@ namespace RedLineLibrary
             joueurs = new List<Joueur>();
             partie = default;
             juge = default;
+            idJoueurCourant = -1;
+            
         }
         public void Initialize(Plateau _plateau)
         {
             plateau= _plateau;
+            
         }
         public void Initialize(Partie _partie)
         {
@@ -75,6 +77,11 @@ namespace RedLineLibrary
             juge.ChangerRole();
             juge = participant;
             return true;
+        }
+
+        public void MettreDansLaDefausseDeReponse(CarteReponse _carteReponse)
+        {
+            plateau.PlacerDansLaDefausseDeReponse(_carteReponse);
         }
     }
 }
