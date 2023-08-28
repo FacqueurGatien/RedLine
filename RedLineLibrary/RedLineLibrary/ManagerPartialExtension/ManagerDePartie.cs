@@ -11,9 +11,11 @@ namespace RedLineLibrary
         private int idJoueurCourant;
 
         public int IdJoueurCourant { get => idJoueurCourant; }
+
+
         public void ChangerJoueur()
         {
-            bool found = false;
+            /*bool found = false;
             while (idJoueurCourant + 1 < joueurs.Count() && !found)
             {
                 idJoueurCourant++;
@@ -21,13 +23,59 @@ namespace RedLineLibrary
             }
             if (!found)
             {
-                // ON PEUT METTRE UN EVENT
+
+            }
+            */
+            if (AUnParticipant(out int id))
+            {
+                idJoueurCourant = id;
+                if (Event_OnPlayerChange != null)
+                    Event_OnPlayerChange(joueurs[idJoueurCourant]);
+            } else
+            {
+                idJoueurCourant = joueurs.Count() - 1;
             }
         }
 
-        public void EnvoyerReponse()
+        public bool AUnParticipant(out int idTemp)
+        {
+            idTemp = idJoueurCourant;
+            bool found = false;
+            while (idTemp + 1 < joueurs.Count() && !found)
+            {
+                idTemp++;
+                found = joueurs[idTemp].Pseudo != juge.Pseudo;
+            }
+            return found;
+        }
+
+        public bool AUnParticipant()
+        {
+            int idTemp = idJoueurCourant;
+            bool found = false;
+            while (idTemp + 1 < joueurs.Count() && !found)
+            {
+                idTemp++;
+                found = joueurs[idTemp].Pseudo != juge.Pseudo;
+            }
+            return found;
+        }
+
+        public bool EnvoyerReponse(Joueur participant, Reponse rep)
         {
             //
+            if (!AUnParticipant())
+                return false;
+            Manche m = partie.RecupererManche();
+            if (participant.Role != EnumRole.Participant ||
+                !m.SoumettreReponse(rep))
+            {
+                // ON REDONNE LES CARTES AU PARTICIPANT ON RENVOIE FALSE
+                rep.RedonnerCartes();
+                return false;
+            }
+            return true;
+
         }
     }
 }

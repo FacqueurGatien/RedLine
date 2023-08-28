@@ -63,6 +63,7 @@ namespace RedLineLibrary
                 return null;
             }
             return cartes.ToArray();
+            
         }
 
         public void Melanger()

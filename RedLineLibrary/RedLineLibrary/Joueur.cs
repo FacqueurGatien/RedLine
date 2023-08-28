@@ -12,11 +12,16 @@ namespace RedLineLibrary
         private Manager manager;
         private EnumRole role;
         private string pseudo;
-        List<CarteReponse> saMain = new List<CarteReponse>();
+        private List<CarteReponse> saMain;
         private int score;
         public string Pseudo { get => pseudo; private set => pseudo = value; }
         public EnumRole Role { get => role; }
+        private List<int> idCartesSelectionnes;
 
+        public List<CarteReponse> Main { get => saMain; }
+
+
+        public int Score { get => score; }
         public Joueur(Manager _manager, EnumRole _role, string _pseudo)
         {
             saMain = new List<CarteReponse>();
@@ -25,6 +30,28 @@ namespace RedLineLibrary
             pseudo = _pseudo;
             score = 0;
             manager.Initialize(this);
+
+        }
+
+        public bool SelectionnerCarte(int id)
+        {
+            if (id >= saMain.Count())
+                return false;
+            else if (idCartesSelectionnes.FindAll(d => d == id).Count() > 0)
+                return false;
+            idCartesSelectionnes.Add(id);
+            return true;
+        }
+
+        public bool DonnerReponseAuMediateur()
+        {
+            Reponse rp = ComposerReponse(idCartesSelectionnes.ToArray());
+            if (manager.EnvoyerReponse(this, rp))
+            {
+                idCartesSelectionnes.Clear();
+                return true;
+            }
+            return false;
         }
 
         // Id des cartes en ordre LIFO

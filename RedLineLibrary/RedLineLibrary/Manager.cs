@@ -13,69 +13,139 @@ namespace RedLineLibrary
         private List<Joueur> joueurs;
         private Partie partie;
         private Joueur juge;
-
+        private bool demarree;
+        public delegate void OnWinEvent(Joueur j);
+        public delegate void OnPlayerChange(Joueur j);
+        public event OnWinEvent Event_OnWin;
+        public event OnPlayerChange Event_OnPlayerChange;
+        public Joueur Juge { get => juge; }
         public Manager()
         {
             plateau = default;
             joueurs = new List<Joueur>();
             partie = default;
             juge = default;
+            demarree = false;
             idJoueurCourant = -1;
-            
+
         }
         public void Initialize(Plateau _plateau)
         {
-            plateau= _plateau;
-            
+            if (demarree)
+                throw new Exception("Deja demarrer");
+            plateau = _plateau;
+
         }
         public void Initialize(Partie _partie)
         {
+            if (demarree)
+                throw new Exception("Deja demarrer");
             _partie = _partie;
         }
         public void Initialize(Joueur _joueurs)
         {
+            if (demarree)
+                throw new Exception("Deja demarrer");
             joueurs.Add(_joueurs);
         }
-        public bool RedistribuerCarteReponseAuJoueursNonJuge()
-        {
-            int nbCartesADistribuer = partie.RecupererManche().VoirQuestion().NombreDeTrous();
 
-            CarteReponse[]? cartes = plateau.DonnerReponseAuMediateur((joueurs.Count() - 1) * nbCartesADistribuer);
+        public bool Demarrer()
+        {
+            // ON VA VERIFIER AVANT DE DEMARRER
+            if (plateau == null ||
+                partie == null ||
+                partie.RecupererManche() != null ||
+                joueurs == null ||
+                joueurs.Count() < 3)
+            {
+                return false;
+            }
+            // ON DECIDE D'UN JUGE ALEATOIREMENT
+            juge = joueurs[Alea.GetInstance().Next(0, joueurs.Count())];
+            partie.GenererManche();
+            DistribuerCarteReponseAuxJoueurs();
+            demarree = true;
+            return true;
+        }
+
+        public bool DistribuerCarteReponseAuxJoueurs()
+        {
+            bool error = false;
+            int i, j;
+            i = 0;
+
+            int[] datas = joueurs.Select(d => partie.CarteParJoueurs - d.Main.Count).ToArray();
+            int sum = datas.Sum();
+            CarteReponse[] cartes = plateau.DonnerCarteReponseAuMediateur(sum);
             if (cartes == null)
                 return false;
-            Stack<CarteReponse> cartesToStack = new Stack<CarteReponse>(cartes);
-                for (int i = 0; i < nbCartesADistribuer; i++)
+            int idCarte = 0;
+            while (i < partie.CarteParJoueurs)
+            {
+                j = 0;
+                while (j < joueurs.Count())
                 {
-                    foreach (Joueur j in joueurs.FindAll(d => d.Role == EnumRole.Participant).ToArray())
+                    error = joueurs[j].Main.Count() >= partie.CarteParJoueurs;
+                    if (!error)
                     {
-                        j.RecevoirCarteReponse(cartes[i]);
+                        joueurs[j].RecevoirCarteReponse(cartes[idCarte]);
+                        idCarte++;
                     }
+                    j++;
                 }
-            return true;
+                i++;
+            }
+
+            return error;
         }
         public CarteQuestion DemanderCarteQuestionAuPlateau()
         {
             return plateau.DonnerCarteQuestionAuMediateur();
         }
-        public Paquet<CarteReponse>? DemanderVoirReponse(Joueur _juge,int _idReponse)
+        public Paquet<CarteReponse>? DemanderVoirReponse(Joueur _juge, int _idReponse)
         {
             if (_juge.Role != EnumRole.Juge)
                 return null;
             return partie.RecupererManche().RetournerReponse(_juge, _idReponse);
         }
-        public bool VoterReponse(Joueur juge,int n)
+        public bool VoterReponse(Joueur juge, int n)
         {
+            if (AUnParticipant())
+                return false;
             if (juge.Role != EnumRole.Juge)
                 return false;
             Manche manche = partie.RecupererManche();
             Joueur participant = manche.RetournerJoueurReponse(juge, n);
             if (participant == null)
                 return false;
-            RedistribuerCarteReponseAuJoueursNonJuge();
             participant.AugmenterScore();
             participant.ChangerRole();
             juge.ChangerRole();
             juge = participant;
+            if (participant.Score == partie.ScoreAAvoir)
+            {
+                // GAGNANT
+                if (Event_OnWin != null)
+                    Event_OnWin(participant);
+            }
+            else
+            {
+                DistribuerCarteReponseAuxJoueurs();
+                GenererManche();
+            }
+            return true;
+        }
+
+        public bool GenererManche()
+        {
+
+            if (joueurs.FirstOrDefault(j => j.Score >= partie.ScoreAAvoir) != null)
+            {
+                // IL Y'A EN THEORIE UN GAGNANT
+                return false;
+            }
+            partie.GenererManche();
+            idJoueurCourant = -1;
             return true;
         }
 

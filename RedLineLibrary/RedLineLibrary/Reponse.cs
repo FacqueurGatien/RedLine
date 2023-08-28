@@ -24,5 +24,14 @@ namespace RedLineLibrary
                 return null;
             return paquetReponse;
         }
+
+        public void RedonnerCartes()
+        {
+            CarteReponse[] rep = paquetReponse.RecupererUnNombreDeCartes(paquetReponse.Count);
+            for (int i = 0; i < rep.Length; i++)
+            {
+                joueur.RecevoirCarteReponse(rep[i]);
+            }
+        }
     }
 }

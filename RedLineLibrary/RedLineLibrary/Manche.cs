@@ -36,6 +36,9 @@ namespace RedLineLibrary
         {
             if (reponse.Joueur.Role == EnumRole.Juge)
                 return false;
+            bool found = reponses.FirstOrDefault(d => d.Joueur.Pseudo == reponse.Joueur.Pseudo) != null;
+            if (found)
+                return false;
             reponses.Add(reponse);
             return true;
         }

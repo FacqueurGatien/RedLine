@@ -40,7 +40,7 @@ namespace RedLineLibrary
             }
             return retour == null ? null : retour[0];
         }
-        public CarteReponse[]? DonnerReponseAuMediateur(int _qteCarte=1)
+        public CarteReponse[]? DonnerCarteReponseAuMediateur(int _qteCarte=1)
         {
             if (paquetCarteReponse.Count + defausseReponse.Count < _qteCarte)
                 throw new Exception("Le nombre de cartes demandé n'est pas compatible avec le plateau (le chien à mangé les cartes?)");
