@@ -22,3 +22,14 @@ D:\SoraDev\RedLine\RedLineLibrary\RedLineLibrary\obj\Debug\net6.0\RedLineLibrary
 D:\SoraDev\RedLine\RedLineLibrary\RedLineLibrary\obj\Debug\net6.0\refint\RedLineLibrary.dll
 D:\SoraDev\RedLine\RedLineLibrary\RedLineLibrary\obj\Debug\net6.0\RedLineLibrary.pdb
 D:\SoraDev\RedLine\RedLineLibrary\RedLineLibrary\obj\Debug\net6.0\ref\RedLineLibrary.dll
+D:\git\RedLine\RedLineLibrary\RedLineLibrary\bin\Debug\net6.0\RedLineLibrary.deps.json
+D:\git\RedLine\RedLineLibrary\RedLineLibrary\bin\Debug\net6.0\RedLineLibrary.dll
+D:\git\RedLine\RedLineLibrary\RedLineLibrary\bin\Debug\net6.0\RedLineLibrary.pdb
+D:\git\RedLine\RedLineLibrary\RedLineLibrary\obj\Debug\net6.0\RedLineLibrary.GeneratedMSBuildEditorConfig.editorconfig
+D:\git\RedLine\RedLineLibrary\RedLineLibrary\obj\Debug\net6.0\RedLineLibrary.AssemblyInfoInputs.cache
+D:\git\RedLine\RedLineLibrary\RedLineLibrary\obj\Debug\net6.0\RedLineLibrary.AssemblyInfo.cs
+D:\git\RedLine\RedLineLibrary\RedLineLibrary\obj\Debug\net6.0\RedLineLibrary.csproj.CoreCompileInputs.cache
+D:\git\RedLine\RedLineLibrary\RedLineLibrary\obj\Debug\net6.0\RedLineLibrary.dll
+D:\git\RedLine\RedLineLibrary\RedLineLibrary\obj\Debug\net6.0\refint\RedLineLibrary.dll
+D:\git\RedLine\RedLineLibrary\RedLineLibrary\obj\Debug\net6.0\RedLineLibrary.pdb
+D:\git\RedLine\RedLineLibrary\RedLineLibrary\obj\Debug\net6.0\ref\RedLineLibrary.dll

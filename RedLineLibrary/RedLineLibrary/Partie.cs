@@ -15,6 +15,7 @@ namespace RedLineLibrary
 
         public int ScoreAAvoir { get => scoreAAvoir;  }
         public int CarteParJoueurs { get => carteParJoueurs;  }
+
         public Partie(Manager _manager, int _score = 5, int _carteParJoueurs = 7)
         {
             manager = _manager;

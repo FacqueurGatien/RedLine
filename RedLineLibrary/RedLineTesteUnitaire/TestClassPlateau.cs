@@ -35,7 +35,7 @@ namespace RedLineTesteUnitaire
             Manager manager = new Manager();
             Plateau plateau = new(manager, null, GenererPaquetReponse());
 
-            CarteReponse[] cr = plateau.DonnerReponseAuMediateur();
+            CarteReponse[] cr = plateau.DonnerCarteReponseAuMediateur();
             Assert.IsNotNull(cr,"Aucune carte renvoyé");
         }
 
@@ -44,7 +44,7 @@ namespace RedLineTesteUnitaire
         {
             Manager manager = new Manager();
             Plateau plateau = new(manager, null, GenererPaquetReponse());
-            Assert.ThrowsException<Exception>(()=>plateau.DonnerReponseAuMediateur(30), "Pas d'exception dans cas de demande trop elevé");
+            Assert.ThrowsException<Exception>(()=>plateau.DonnerCarteReponseAuMediateur(30), "Pas d'exception dans cas de demande trop elevé");
         }
 
         [TestMethod]
@@ -52,7 +52,7 @@ namespace RedLineTesteUnitaire
         {
             Manager manager = new Manager();
             Plateau plateau = new(manager, new Paquet<CarteQuestion>(new Stack<CarteQuestion>()));
-            Assert.ThrowsException<Exception>(()=> plateau.DonnerReponseAuMediateur(), "Une carte à été renvoyé");
+            Assert.ThrowsException<Exception>(()=> plateau.DonnerCarteReponseAuMediateur(), "Une carte à été renvoyé");
         }
         private Paquet<CarteReponse> GenererPaquetReponse()
         {
