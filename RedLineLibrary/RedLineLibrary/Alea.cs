@@ -19,7 +19,7 @@ namespace RedLineLibrary
         {
             if (rnd == null)
             {
-                new Random();
+                new Alea();
             }
             return rnd;
         }

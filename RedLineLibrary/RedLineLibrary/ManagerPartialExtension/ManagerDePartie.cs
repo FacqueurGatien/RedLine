@@ -10,7 +10,20 @@ namespace RedLineLibrary
     {
         private int idJoueurCourant;
 
-        public int IdJoueurCourant { get => idJoueurCourant; }
+        public int IdJoueurCourant { get => idJoueurCourant;
+            private set => ChangerJoueurCourant(value); 
+        }
+
+        private void ChangerJoueurCourant(int id)
+        {
+            if (id != null && idJoueurCourant != id)
+            {
+                idJoueurCourant = id;
+                if (Event_OnPlayerChange != null)
+                    Event_OnPlayerChange(joueurs[idJoueurCourant]);
+            }
+
+        }
 
 
         public void ChangerJoueur()
@@ -28,12 +41,11 @@ namespace RedLineLibrary
             */
             if (AUnParticipant(out int id))
             {
-                idJoueurCourant = id;
-                if (Event_OnPlayerChange != null)
-                    Event_OnPlayerChange(joueurs[idJoueurCourant]);
+                IdJoueurCourant = id;
+                
             } else
             {
-                idJoueurCourant = joueurs.Count() - 1;
+                IdJoueurCourant = joueurs.Count() - 1;
             }
         }
 

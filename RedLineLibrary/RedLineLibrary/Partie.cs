@@ -18,10 +18,10 @@ namespace RedLineLibrary
 
         public Partie(Manager _manager, int _score = 5, int _carteParJoueurs = 7)
         {
-            manager = _manager;
-            manager.Initialize(this);
+            manager = _manager;            
             scoreAAvoir = _score;
             carteParJoueurs = _carteParJoueurs;
+            manager.Initialize(this);
         }
         public void GenererManche()
         {

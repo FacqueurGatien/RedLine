@@ -40,7 +40,7 @@ namespace RedLineLibrary
         {
             if (demarree)
                 throw new Exception("Deja demarrer");
-            _partie = _partie;
+            partie = _partie;
         }
         public void Initialize(Joueur _joueurs)
         {
@@ -65,6 +65,7 @@ namespace RedLineLibrary
             partie.GenererManche();
             DistribuerCarteReponseAuxJoueurs();
             demarree = true;
+            ChangerJoueur();
             return true;
         }
 

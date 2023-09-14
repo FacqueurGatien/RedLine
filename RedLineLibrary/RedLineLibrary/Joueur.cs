@@ -22,6 +22,8 @@ namespace RedLineLibrary
 
 
         public int Score { get => score; }
+
+        public Joueur(Manager manager, string pseudo) : this(manager, EnumRole.Participant, pseudo) { }
         public Joueur(Manager _manager, EnumRole _role, string _pseudo)
         {
             saMain = new List<CarteReponse>();

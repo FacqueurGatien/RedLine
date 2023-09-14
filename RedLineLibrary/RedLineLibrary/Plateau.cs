@@ -24,10 +24,11 @@ namespace RedLineLibrary
             paquetCarteQuestion = _paquetCarteQuestion??new Paquet<CarteQuestion>(new Stack<CarteQuestion>());
             paquetCarteReponse = _paquetCarteReponse??new Paquet<CarteReponse>(new Stack<CarteReponse>());
             defausseReponse = _paquetDefausseReponse ?? new Paquet<CarteReponse>(new Stack<CarteReponse>());
-            manager.Initialize(this);
+            
             eventDerniereCarteTireePiocheReponse += (sender, type) => this.PlacerDefausseDansLaPiocheEtMelanger();
             paquetCarteQuestion.Melanger();
             paquetCarteReponse.Melanger();
+            manager.Initialize(this);
         }
         public CarteQuestion? DonnerCarteQuestionAuMediateur()
         {
