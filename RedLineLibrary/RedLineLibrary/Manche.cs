@@ -11,6 +11,8 @@ namespace RedLineLibrary
         private CarteQuestion question;
         private List<Reponse> reponses;
 
+        
+
         public Reponse[] Reponses { get => reponses.ToArray(); }
         public Manche(CarteQuestion _question) 
         {

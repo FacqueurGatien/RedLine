@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace RedLineLibrary
 {
     public class Joueur
-    {
-        private static int MAX_CARDS = 5; 
+    {     
         private Manager manager;
         private EnumRole role;
         private string pseudo;
@@ -20,17 +19,22 @@ namespace RedLineLibrary
 
         public List<CarteReponse> Main { get => saMain; }
 
+        /* TO DO :
+         * Mettre les carte dans une collection a part pour pouvoir
+         * les separer de la main quand elles sont selectionnées
+         */
 
         public int Score { get => score; }
 
         public Joueur(Manager manager, string pseudo) : this(manager, EnumRole.Participant, pseudo) { }
         public Joueur(Manager _manager, EnumRole _role, string _pseudo)
         {
+            idCartesSelectionnes = new List<int>();
             saMain = new List<CarteReponse>();
             manager = _manager;
             role = _role;
             pseudo = _pseudo;
-            score = 0;
+            score = 4;
             manager.Initialize(this);
 
         }
@@ -48,8 +52,10 @@ namespace RedLineLibrary
         public bool DonnerReponseAuMediateur()
         {
             Reponse rp = ComposerReponse(idCartesSelectionnes.ToArray());
+            
             if (manager.EnvoyerReponse(this, rp))
             {
+                
                 idCartesSelectionnes.Clear();
                 return true;
             }
@@ -68,6 +74,7 @@ namespace RedLineLibrary
             while (i < cartesId.Count && !doublon)
             {
                 doublon = cartesId[i] == cartesId[i - 1];
+                i++;
             }
             // EXCEPTIONS DOUBLONS ET INTERVALLE DES IDS
             if (doublon)
@@ -80,8 +87,8 @@ namespace RedLineLibrary
             Paquet<CarteReponse> paquet = new Paquet<CarteReponse>(new());
             foreach (int id in _cartesId)
             {
-                paquet.AjouterCarte(saMain[i]);
-                saMain.RemoveAt(i);
+                paquet.AjouterCarte(saMain[id]);
+                saMain.RemoveAt(id);
             }
             Reponse reponse = new Reponse(this, paquet);
             return reponse;
@@ -92,20 +99,11 @@ namespace RedLineLibrary
         }*/
         public bool RecevoirCartesReponse(CarteReponse[] _cartes)
         {
-            if (saMain.Count+_cartes.Length>MAX_CARDS)
-            {
-                return false;
-            }
             saMain.AddRange(_cartes);
             return true;
         }
 
-        public bool RecevoirCarteReponse(CarteReponse _carte)
-        {
-            if (saMain.Count >= MAX_CARDS)
-            {
-                return false;
-            }
+        public bool RecevoirCarteReponse(CarteReponse _carte) { 
             saMain.Add(_carte);
             return true;
         }

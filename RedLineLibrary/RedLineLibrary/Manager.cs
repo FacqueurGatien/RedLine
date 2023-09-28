@@ -14,13 +14,25 @@ namespace RedLineLibrary
         private Partie partie;
         private Joueur juge;
         private bool demarree;
+        private bool estFinie;
         public delegate void OnWinEvent(Joueur j);
         public delegate void OnPlayerChange(Joueur j);
+        public delegate void OnJudgeTurnEvent(Joueur j);
+        public delegate void OnPlayerWinPoint(Joueur j);
+        
         public event OnWinEvent Event_OnWin;
         public event OnPlayerChange Event_OnPlayerChange;
+        public event OnPlayerChange Event_OnJudgeTurnEvent;
+        public event OnPlayerWinPoint Event_OnPlayerWinPointEvent;
         public Joueur Juge { get => juge; }
+        public bool EstFinie { get => estFinie; }
+
+        public CarteQuestion Question { get => partie.RecupererManche().VoirQuestion(); }
+        
+        public Reponse[] Reponses { get => partie.RecupererManche().Reponses;  }
         public Manager()
         {
+            estFinie = false;
             plateau = default;
             joueurs = new List<Joueur>();
             partie = default;
@@ -62,11 +74,26 @@ namespace RedLineLibrary
             }
             // ON DECIDE D'UN JUGE ALEATOIREMENT
             juge = joueurs[Alea.GetInstance().Next(0, joueurs.Count())];
+            juge.ChangerRole();
             partie.GenererManche();
             DistribuerCarteReponseAuxJoueurs();
             demarree = true;
             ChangerJoueur();
             return true;
+        }
+
+        public bool RendreVisibleLesReponses(Joueur demandeur)
+        {
+            if (AUnParticipant())
+                return false;
+            bool rt = true;
+            int i = 0;
+            while (rt && i < partie.RecupererManche().Reponses.Count() )
+            {
+                rt = partie.RecupererManche().Reponses[i].ObtenirReponse(demandeur).RendreVisible(demandeur);
+                i++;
+            }
+            return rt;
         }
 
         public bool DistribuerCarteReponseAuxJoueurs()
@@ -109,22 +136,29 @@ namespace RedLineLibrary
                 return null;
             return partie.RecupererManche().RetournerReponse(_juge, _idReponse);
         }
-        public bool VoterReponse(Joueur juge, int n)
+        public void VoterReponse(Joueur _juge, int n)
         {
             if (AUnParticipant())
-                return false;
-            if (juge.Role != EnumRole.Juge)
-                return false;
+                throw new Exception("");
+            if (_juge.Role != EnumRole.Juge)
+                throw new Exception("");
+            if (n < 0 || n > joueurs.Count - 2)
+                throw new Exception("");
             Manche manche = partie.RecupererManche();
             Joueur participant = manche.RetournerJoueurReponse(juge, n);
             if (participant == null)
-                return false;
+                throw new Exception("");
             participant.AugmenterScore();
             participant.ChangerRole();
-            juge.ChangerRole();
+            _juge.ChangerRole();
             juge = participant;
-            if (participant.Score == partie.ScoreAAvoir)
+            if (Event_OnPlayerWinPointEvent != null)
             {
+                Event_OnPlayerWinPointEvent(juge);
+            }
+            if (juge.Score == partie.ScoreAAvoir)
+            {
+                estFinie = true;
                 // GAGNANT
                 if (Event_OnWin != null)
                     Event_OnWin(participant);
@@ -133,8 +167,8 @@ namespace RedLineLibrary
             {
                 DistribuerCarteReponseAuxJoueurs();
                 GenererManche();
+                ChangerJoueur();
             }
-            return true;
         }
 
         public bool GenererManche()
@@ -147,6 +181,7 @@ namespace RedLineLibrary
             }
             partie.GenererManche();
             idJoueurCourant = -1;
+            
             return true;
         }
 

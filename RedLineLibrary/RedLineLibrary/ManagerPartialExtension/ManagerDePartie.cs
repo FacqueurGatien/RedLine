@@ -1,4 +1,4 @@
-﻿using System;
+﻿  using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,17 +28,6 @@ namespace RedLineLibrary
 
         public void ChangerJoueur()
         {
-            /*bool found = false;
-            while (idJoueurCourant + 1 < joueurs.Count() && !found)
-            {
-                idJoueurCourant++;
-                found = joueurs[idJoueurCourant].Pseudo != juge.Pseudo;
-            }
-            if (!found)
-            {
-
-            }
-            */
             if (AUnParticipant(out int id))
             {
                 IdJoueurCourant = id;
@@ -46,6 +35,10 @@ namespace RedLineLibrary
             } else
             {
                 IdJoueurCourant = joueurs.Count() - 1;
+                if (Event_OnJudgeTurnEvent != null)
+                {
+                    Event_OnJudgeTurnEvent(juge);
+                }
             }
         }
 
@@ -76,8 +69,6 @@ namespace RedLineLibrary
         public bool EnvoyerReponse(Joueur participant, Reponse rep)
         {
             //
-            if (!AUnParticipant())
-                return false;
             Manche m = partie.RecupererManche();
             if (participant.Role != EnumRole.Participant ||
                 !m.SoumettreReponse(rep))

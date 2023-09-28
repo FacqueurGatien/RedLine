@@ -9,14 +9,16 @@ namespace RedLineLibrary
     public class Paquet<T> where T : Carte
     {
         private bool estVisible;
+        private bool estVisiblePourUnJuge;
         private Stack<T> cartes;
 
         public int Count => cartes.Count();
 
-        public Paquet(Stack<T> _cartes, bool _visible = false)
+        public Paquet(Stack<T> _cartes, bool _visible = false, bool _estVisiblePourUnJuge = false)
         {
             cartes = _cartes??new Stack<T>();
             estVisible = _visible;
+            estVisiblePourUnJuge = _estVisiblePourUnJuge;
         }
         public bool EstVisible { get => estVisible; private set => estVisible = value; }
 
@@ -62,8 +64,34 @@ namespace RedLineLibrary
             {
                 return null;
             }
-            return cartes.ToArray();
+            List<T> ret = new List<T>();
+            ret = cartes.ToList();
+            ret.Reverse();
+            return ret.ToArray();
             
+        }
+
+        public T[] Regarder(Joueur j)
+        {
+            if (j.Role == EnumRole.Participant && !estVisible)
+            {
+                return null;
+            }
+            List<T> ret = new List<T>();
+            ret = cartes.ToList();
+            ret.Reverse();
+            return ret.ToArray();
+
+        }
+
+        public bool RendreVisible(Joueur j)
+        {
+            if (j.Role == EnumRole.Juge)
+            {
+                estVisible = true;
+                return true;
+            }
+            return false;
         }
 
         public void Melanger()

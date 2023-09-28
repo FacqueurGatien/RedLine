@@ -33,13 +33,94 @@ namespace RedLineTesteUnitaire
                 new Joueur(manager, nomJoueur);
                 nJoueur++;
             }
-            manager.Event_OnPlayerChange += (j => Program.playerChange(j));
-            if (manager.Demarrer())
+            manager.Event_OnPlayerChange += (joueur =>
             {
-                Console.WriteLine("La partie a demarrer");
-                Console.WriteLine("Le juge est " + manager.Juge.Pseudo);
-               
-            }
+                if (joueur.Role != EnumRole.Participant)
+                    return;
+                Console.Clear();
+                // ON DEMANDE SAISIE REPONSE
+                
+                do
+                {
+                    int nbCarteRep = 0;
+                    do
+                    {
+                        playerChange(joueur);
+                        Console.WriteLine("Quelle carte pour repondre a");
+                        Console.WriteLine(manager.Question);
+                        for (int i = 0; i < joueur.Main.Count(); i++)
+                        {
+                            Console.WriteLine((i + 1) + ":" + joueur.Main[i]);
+                        }
+                        int idSelectionne = Convert.ToInt32(Console.ReadLine()) - 1;
+                        while (!joueur.SelectionnerCarte(idSelectionne))
+                        {
+                            Console.WriteLine("Mauvais id");
+                            idSelectionne = Convert.ToInt32(Console.ReadLine()) - 1;
+                        }
+                        Console.WriteLine("OK");
+                        nbCarteRep++;
+                        //
+                    } while (nbCarteRep < manager.Question.NombreDeTrous());
+                } while (!joueur.DonnerReponseAuMediateur());
+                // LA REPONSE DOIT ETRE BONNE POUR QUITTER LA BOUCLE
+                Console.ReadKey();
+                manager.ChangerJoueur();
+
+            });
+
+            manager.Event_OnJudgeTurnEvent += (joueur =>
+            {
+                Console.Clear();
+                Console.WriteLine("Le juge " + joueur.Pseudo + " va juger les reponses");
+                if (manager.RendreVisibleLesReponses(joueur))
+                    Console.WriteLine("Retournons les reponses");
+                Console.WriteLine(manager.Question);
+                for (int i = 0; i < manager.Reponses.Count(); i++)
+                {
+                    Console.WriteLine("reponse " + (i+1));
+                    Paquet<CarteReponse> reponse = manager.Reponses[i].ObtenirReponse(joueur);
+                    if (reponse != null)
+                    {
+                        CarteReponse[] look = reponse.Regarder(joueur);
+                        foreach(CarteReponse c in look)
+                        {
+                            Console.WriteLine(c);
+                        }
+                    }
+                   
+                   
+                }
+                // DEMANDE DE CHOIX DU GAGNANT
+                int idSelectionne = Convert.ToInt32(Console.ReadLine()) - 1;
+                bool exception = false;
+                do
+                {
+                    try
+                    {
+                        manager.VoterReponse(joueur, idSelectionne);                        
+                    }
+                    catch (Exception e)
+                    {
+                        exception = true;
+                    }
+                } while (exception);
+            });
+
+            manager.Event_OnPlayerWinPointEvent += j =>
+            {
+                Console.Clear();
+                Console.WriteLine(j.Pseudo + " a gagné un point");
+                Console.ReadKey();
+            };
+
+            
+            manager.Event_OnWin += (j =>
+            {
+                Console.WriteLine(j.Pseudo + " a Gagné");
+            });
+            manager.Demarrer();
+
         }
 
         public static void playerChange(Joueur j)
