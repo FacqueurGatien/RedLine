@@ -34,7 +34,7 @@ namespace RedLineLibrary
             manager = _manager;
             role = _role;
             pseudo = _pseudo;
-            score = 4;
+            score = 0;
             manager.Initialize(this);
 
         }
